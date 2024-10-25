@@ -61,11 +61,21 @@
 
 #endif
 
-double process_with_arrays_intrinsics(int t)
-{
-    usleep(t);
-    return 0.42;
-}
+
+
+// kernel declarations
+#if TYPE == COLDSINGLE
+
+double FUNCTION_NAME(TYPEPREFIX,IMPLEMENTATION)(struct lcanvas_driver_context * restrict lc);
+
+#elif TYPE == WARMSINGLE
+
+double FUNCTION_NAME(TYPEPREFIX,IMPLEMENTATION)(struct lcanvas_driver_context * restrict lc);
+
+#else
+
+#endif
+
 
 int main( int argc, char **argv )
 {
@@ -90,6 +100,7 @@ int main( int argc, char **argv )
   
   FILE   * outfile = NULL;
   FILE   * infile  = NULL;
+  lcanvas_driver_context ld_context;
 
   N           = (argc > 1 ? atoi(*(argv+1)) : NPART );
   seed        = (argc > 2 ? atoi(*(argv+2)) : -1 );     // set the seed for repeatible runs
@@ -154,6 +165,32 @@ int main( int argc, char **argv )
 #error("unsupported DATASIZE")
 #endif
 
+
+  /* ------------------------------------------------------
+   *
+   * populate context
+   *
+   * ------------------------------------------------------ */
+
+  //common fields
+
+  ld_context.P = P;
+  ld_context.Vec = (double *)vpos;
+  ld_context.x_pos = pos_x;
+  ld_context.y_pos = pos_y;
+  ld_context.z_pos = pos_z;
+  ld_context.mass =  mass;
+
+
+  //type specific fields
+
+  #if TYPE == COLDSINGLE
+
+  #elif TYPE == WARMSINGLE
+
+  #else
+
+  #endif
   
   /* ------------------------------------------------------
    *
@@ -194,12 +231,15 @@ int main( int argc, char **argv )
           int draw = (int)lrand48() % N;
           ngb_list[i] = draw;
 	  }
+      ld_context.target = target;
+      ld_context.ngb_list = ngb_list;
+      ld_context.Nngb = Nneighbours;
 
 #if TYPE == COLDSINGLE 
 
       time= 0.0;
       now = CPU_TIME_DSEC; 
-	      myforce =  process_with_arrays_intrinsics(10);
+	  myforce =  FUNCTION_NAME(TYPEPREFIX,IMPLEMENTATION) (&ld_context);
       time = CPU_TIME_DSEC - now;
       force[target] = myforce / (Nrepetitions+1);
       average_time0 += time; //dividing once (maybe) reduces error so for now this is sum not avg
@@ -209,14 +249,18 @@ int main( int argc, char **argv )
 #elif TYPE == WARMSINGLE
 
       time= 0.0;
-      now = CPU_TIME_DSEC; 
-	      myforce =  process_with_arrays_intrinsics(10);
+      now = CPU_TIME_DSEC;
+
+	  myforce =  FUNCTION_NAME(TYPEPREFIX,IMPLEMENTATION) (&ld_context);
+      
       time = CPU_TIME_DSEC - now;
       average_time0 += time; //dividing once (maybe) reduces error so for now this is sum not avg
 
       time= 0.0;
-      now = CPU_TIME_DSEC; 
-	      myforce +=  process_with_arrays_intrinsics(10);
+      now = CPU_TIME_DSEC;
+
+	  myforce +=  FUNCTION_NAME(TYPEPREFIX,IMPLEMENTATION) (&ld_context);
+      
       time = CPU_TIME_DSEC - now;
       average_time1 += time; //dividing once (maybe) reduces error so for now this is sum not avg
       force[target] = myforce / 2;

@@ -38,6 +38,8 @@
 
 #define STRINGIZE(X) INNER_STRINGIZE(X)
 #define INNER_STRINGIZE(X) #X
+#define CONCAT(a, b) a##_##b
+#define FUNCTION_NAME(PREFIX, POSTFIX) CONCAT(PREFIX, POSTFIX)
 
 //if not sure, overestimate
 #define CACHE_LINE_BYTES 64 

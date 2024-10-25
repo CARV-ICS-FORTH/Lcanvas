@@ -36,6 +36,9 @@
 #ifndef __LCANVAS_KERNTYPES_
 #define __LCANVAS_KERNTYPES__
 
+//perhaps we need to make this more general at some point
+#include "dtypes4.h"
+
 #define COLDSINGLE 1
 #define WARMSINGLE 2
 
@@ -43,10 +46,36 @@
 #if TYPE == COLDSINGLE
 
 #define TYPENAME "cold-single"
+#define TYPEPREFIX lcanvas_cold_single
+typedef struct lcanvas_driver_context
+{
+    P_t *P;
+    double* Vec;
+    double* x_pos;
+    double* y_pos;
+    double* z_pos;
+    double* mass;
+    int target;
+    int *ngb_list;
+    int Nngb;
+}lcanvas_driver_context;
 
 #elif TYPE == WARMSINGLE
 
 #define TYPENAME "warm-single"
+#define TYPEPREFIX lcanvas_warm_single
+typedef struct lcanvas_driver_context
+{
+    P_t *P;
+    double* Vec;
+    double* x_pos;
+    double* y_pos;
+    double* z_pos;
+    double* mass;
+    int target;
+    int *ngb_list;
+    int Nngb;
+}lcanvas_driver_context;
 
 #else
 
