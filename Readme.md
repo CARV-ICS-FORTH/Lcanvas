@@ -1,3 +1,14 @@
+# Scope and origin of Lcanvas
+
+Lcanvas is a code meant to study the performance scientific codes that operate with sparse data with irregular patterns and the various dimensions that affect them
+This code is using: https://www.ict.inaf.it/gitlab/luca.tornatore/nbody-vectorization-toy-lab/ as a starting point.
+
+The main dimensions it aims to explore are:
+
+- The effect of memory Layout of the data of such codes
+- The strategies for interleaving memory accesses and computation
+- The efficiency of various acceleration strategies (vectorization, GPU-offloading etc)
+
 # A small toy-sized lab for vectorization of Many-body codes pattern
 
 This repository contains the shared work done by (some) participants in the [SPACE CoE](https://www.space-coe.eu/) in experimenting the vectorization achieved when different data layouts (AoS, SoA, SoAos) are adopted.
