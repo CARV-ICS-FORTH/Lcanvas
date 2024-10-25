@@ -1,3 +1,32 @@
+/* ────────────────────────────────────────────────────────────────────────── *
+ │                                                                            │
+ │ This file is part of the nbody-vectorization-toy-lab in the fram of the    │
+ │ SPACE Center of Excellence                                                 │
+ │ © 2024                                                                     │
+ │ The work has been started by Luca Tornatore @ INAF (Italian National       │
+ │ Institute for Astrophysics) and continued in collaboration with            │
+ │ Vassilis Flouris @ FORTH (Foundation for Research and Technology - Hellas  │
+ │                                                                            │
+ │ Consult the accopanying file changes.log for details                       │
+ │                                                                            │
+ │ contact:                                                                   │
+ │  luca.tornatore@inaf.it                                                    │
+ │  vflouris@ics.forth.gr                                                     │
+ │                                                                            │
+ │                                                                            │
+ │ ×××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××  │
+ │                                                                            │
+ │     This is open source software; you can redistribute it and/or modify    │
+ │     it under the terms of the "3 clauses BSD license"                      │
+ │       https://opensource.org/license/bsd-3-clause                          │
+ │                                                                            │
+ │     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS    │
+ │     “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT      │
+ │     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS      │
+ │     FOR A PARTICULAR PURPOSE ARE DISCLAIMED.                               │
+ │                                                                            │
+ * ────────────────────────────────────────────────────────────────────────── */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
