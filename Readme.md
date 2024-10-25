@@ -1,6 +1,6 @@
 # Scope and origin of Lcanvas
 
-Lcanvas is a code meant to study the performance scientific codes that operate with sparse data with irregular patterns and the various dimensions that affect them
+Lcanvas is a code meant to study the performance of scientific codes that operate on sparse data with irregular patterns and the various dimensions that affect them
 This code is using: https://www.ict.inaf.it/gitlab/luca.tornatore/nbody-vectorization-toy-lab/ as a starting point.
 
 The main dimensions it aims to explore are:
