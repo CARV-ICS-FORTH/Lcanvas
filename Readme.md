@@ -11,7 +11,7 @@ The main dimensions it aims to explore are:
 
 # A small toy-sized lab for vectorization of Many-body codes pattern
 
-This repository contains the shared work done by partners in the [SPACE CoE](https://www.space-coe.eu/) regarding the vectorization achieved when different data layouts (AoS, SoA, SoAos) are adopted.
+This repository contains the shared work done by partners in [SPACE CoE](https://www.space-coe.eu/) and [EUPEX](https://www.eupex.eu/)regarding the vectorization achieved when different data layouts (AoS, SoA, SoAos) are adopted.
 
 What we address here is the _many-body problem_, i.e. the pattern from codes that solve the gravitational interaction among particles that are _not_ “true bodies” but instead represent matter samples in the phase-space. As such, they do not need to deploy highest order $\propto N^2$ integration methods to correclty solve close encounters. At odds, to speed-up the calculation approximate methods can be used while obtaining an adequately small error.
 
@@ -47,4 +47,11 @@ Considering the memory performance penalty due to the non-cache friendly pattern
 **v2**: copying all the neighbours into a memory buffer so that the loop is then linear on consequent memory addresses (this of course could hardly been done in a real code);
 
 **v3**: evolving the v2 in a more realistic way, having a thread that fetches neighbouring particles in a limited buffer, while other threads process them.
+
+### Acknowledgements
+We thankfully acknowledge support for this research from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the following two Grant Agreements 
+- Grant Agreement No 101093441 (SPACE CoE) which receives support from the European Union’s Horizon 2020 research and innovation programme and from Belgium, Czech Republic, France, Germany, Greece, Italy, Norway, and Spain.
+- Grant Agreement No 101033975 (EUPEX) which receives support from the European Union’s Horizon 2020 research and innovation programme and from France, Germany, Italy, Greece, United Kingdom, Czech Republic, Croatia.
+National contributions from the involved state members (including the Greek General Secretariat for Research and Innovation) match the EuroHPC funding.
+
 
